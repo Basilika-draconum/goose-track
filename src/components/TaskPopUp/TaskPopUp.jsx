@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TimePicker, Radio } from 'antd';
+import { TimePicker } from 'antd';
 import dayjs from 'dayjs';
 import style from './TaskPopUp.module.scss';
 
@@ -22,7 +22,7 @@ function TaskPopUp() {
     console.log(e.target.value);
     setPriority(e.target.value);
   };
-
+  console.log(priority);
   return (
     <div className={style.backdrop}>
       <div className={style.popup}>
@@ -60,14 +60,57 @@ function TaskPopUp() {
               />
             </label>
           </div>
-          <Radio.Group onChange={onChangePriority} value={priority}>
-            <Radio value={'low'}>Low</Radio>
-            <Radio value={'medium'}>Medium</Radio>
-            <Radio value={'high'}>High</Radio>
-          </Radio.Group>
-          <button type="submit">+ Add</button>
-          <button type="button">Cancel</button>
-          <button type="button">X</button>
+          <div className={style.radioGroup}>
+            <div className={style.radioButton}>
+              <input
+                type="radio"
+                id="low"
+                name="priority"
+                value="low"
+                onChange={onChangePriority}
+                className={style.radioInput}
+              />
+              <label htmlFor="low" id="low">
+                Low
+              </label>
+            </div>
+            <div className={style.radioButton}>
+              <input
+                type="radio"
+                id="medium"
+                name="priority"
+                value="medium"
+                onChange={onChangePriority}
+                className={style.radioInput}
+              />
+              <label htmlFor="medium" id="medium">
+                Medium
+              </label>
+            </div>
+            <div className={style.radioButton}>
+              <input
+                type="radio"
+                id="high"
+                name="priority"
+                value="high"
+                onChange={onChangePriority}
+                className={style.radioInput}
+              />
+              <label htmlFor="high" id="high">
+                High
+              </label>
+            </div>
+          </div>
+          <div className={style.buttonWrapper}>
+            <button type="submit" className={style.submitButton}>
+              <span></span>Add
+            </button>
+            <button type="button" className={style.cancelButton}>
+              Cancel
+            </button>
+          </div>
+
+          <button type="button" className={style.closeButton}></button>
         </form>
       </div>
     </div>
