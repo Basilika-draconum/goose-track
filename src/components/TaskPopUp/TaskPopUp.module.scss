@@ -1,0 +1,98 @@
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 303px;
+  height: 336px;
+  padding: 48px 18px 40px 18px;
+
+  border: 1px solid rgba(220, 227, 229, 0.8);
+  box-shadow: 0px 4px 16px rgba(17, 17, 17, 0.1);
+  border-radius: 8px;
+}
+
+.popupForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & label {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+  }
+  & input {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    color: #616161;
+  }
+}
+
+.titleLabel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 16px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+
+  & input {
+    width: 100%;
+    height: 42px;
+    background: #f7f7f7;
+    border-radius: 8px;
+    border: none;
+    padding: 12px 14px;
+    outline: none;
+
+    &:hover {
+      border: 1px solid #4096ff;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+      border-inline-end-width: 1px;
+    }
+  }
+}
+
+.timePickersWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.timePickerLabel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.timePicker {
+//   height: 42px;
+  font-family: inherit;
+  background-color: #f7f7f7;
+  border: none;
+
+  &:hover {
+    border: 1px solid #4096ff;
+  }
+}
