@@ -4,7 +4,7 @@
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */ 
-:root {
+:root { 
   --bgColor-primary: #FFFFFF;
   --bgColor-secondary: #DCEBF7;
   --bgColor-table: #EAEAEA;
