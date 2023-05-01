@@ -291,7 +291,7 @@
   background-color: transparent;
   border-radius: 50%;
   cursor: pointer;
-  transition: 250ms ease-in;
+  transition: transform 250ms ease-in;
   &:hover {
     transform: rotateZ(90deg);
     border: 1.5px solid rgba(114, 194, 248, 0.7);
