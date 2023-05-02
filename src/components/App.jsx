@@ -8,7 +8,6 @@ export const App = () => {
     <Routes>
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/" element={<TaskPopUp />} />
     </Routes>
   );
 };

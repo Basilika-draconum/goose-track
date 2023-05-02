@@ -19,10 +19,9 @@ function TaskPopUp() {
   };
 
   const onChangePriority = e => {
-    console.log(e.target.value);
     setPriority(e.target.value);
   };
-  console.log(priority);
+
   return (
     <div className={style.backdrop}>
       <div className={style.popup}>
