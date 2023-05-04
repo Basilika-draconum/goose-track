@@ -10,6 +10,7 @@ import { selectArrTasks } from 'redux/tasks/tasksSelectors';
 
 import style from './TaskForm.module.scss';
 import { addTask } from 'redux/tasks/tasksOperations';
+import icon from '../../images/svg.svg';
 
 function TaskPopUp({ task, closeModal }) {
 	const format = 'H:mm';
@@ -146,9 +147,10 @@ function TaskPopUp({ task, closeModal }) {
 						<button
 							type="submit"
 							className={style.submitButton}
-							onClick={handleAdd}
-						>
-							<span className={style.plus}>+</span>Add
+							onClick={handleAdd}>
+							<svg className={style.submitButton__icon} alt="plus">
+								<use href={`${icon}#plus`}></use>
+							</svg>Add
 						</button>
 						<button
 							type="button"

@@ -250,6 +250,7 @@
 	@media screen and (min-width: 768px) {
 		width: 182px;
 		height: 48px;
+		gap: 8px;
 	}
 
 	span {
@@ -279,10 +280,12 @@
 	&:hover::after {
 		width: 100%;
 	}
-}
 
-.plus {
-	color: #FFFFFF;
+	&__icon {
+		width: 20px;
+		height: 20px;
+		stroke: var(--profile-text-main);
+	}
 }
 
 .cancelButton {
