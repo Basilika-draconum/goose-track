@@ -13,18 +13,18 @@ const ChoosedDay = () => {
   const currentDay = useSelector(selectDate);
   const [tasksFilter, setTasksFilter] = useState();
 
-  const dayFromParams = new Date(`${currentDay}`).toISOString();
+  const dayFromParams = new Date(`${currentDay}`).toISOString().slice(0, 10);
 
   useEffect(() => {
-    const filteredTasks = arrTasks?.filter(t => t.date.start === dayFromParams);
+    const filteredTasks = arrTasks?.filter(t => t.date.start.slice(0, 10) === dayFromParams);
     setTasksFilter(filteredTasks);
-  }, [dayFromParams, arrTasks]);
+  }, [dayFromParams, arrTasks, currentDay]);
 
   return (
-    <div className={s.wrapChooseDay}>
+    <section className={s.wrapChooseDay}>
       <DayCalendarHead />
       <TasksColumnsList tasks={tasksFilter} />
-    </div>
+    </section>
   );
 };
 

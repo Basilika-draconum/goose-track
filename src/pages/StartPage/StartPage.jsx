@@ -3,7 +3,7 @@ import { Description } from 'components/Description/Description';
 import { Reviews } from 'components/Reviews/reviews';
 import React from 'react';
 
-export const StartPage = () => {
+const StartPage = () => {
   return (
     <>
       <AuthSection />
@@ -12,3 +12,4 @@ export const StartPage = () => {
     </>
   );
 };
+export default StartPage;
