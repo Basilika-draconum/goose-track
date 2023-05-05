@@ -10,9 +10,9 @@ import { selectArrTasks } from 'redux/tasks/tasksSelectors';
 
 import style from './TaskForm.module.scss';
 import { addTask } from 'redux/tasks/tasksOperations';
+import icon from '../../images/svg.svg';
 
-function TaskPopUp({ task, closeModal, type }) {
-
+function TaskPopUp({ task, closeModal }) {
   const format = 'H:mm';
   const [start, setStart] = useState(
     task ? task.start : dayjs('09:00', format)
@@ -23,7 +23,7 @@ function TaskPopUp({ task, closeModal, type }) {
 
   const dispatch = useDispatch();
 
-    const chooseProgressType = type => {
+  const chooseProgressType = type => {
     if (type === 'To do') {
       return 'toDo';
     }
@@ -87,13 +87,7 @@ function TaskPopUp({ task, closeModal, type }) {
       <form action="" className={style.popupForm}>
         <label htmlFor="start" className={style.titleLabel}>
           <p className={style.title}>Title</p>
-          <input
-            name="title"
-            type="text"
-            placeholder="Enter text"
-            value={title}
-            onChange={onChangeTitle}
-          />
+          <input name="title" type="text" placeholder="Enter text" />
         </label>
         <div className={style.timePickersWrapper}>
           <label htmlFor="title" className={style.timePickerLabel}>
@@ -172,7 +166,10 @@ function TaskPopUp({ task, closeModal, type }) {
               className={style.submitButton}
               onClick={handleAdd}
             >
-              <span className={style.plus}>+</span>Add
+              <svg className={style.submitButton__icon} alt="plus">
+                <use href={`${icon}#plus`}></use>
+              </svg>
+              Add
             </button>
             <button
               type="button"
