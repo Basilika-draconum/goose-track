@@ -35,9 +35,9 @@ function TaskPopUp({ task, closeModal }) {
 		setPriority(e.target.value);
 	};
 
-	const onChangeTitle = e => {
-		setTitle(e.target.value);
-	};
+	// const onChangeTitle = e => {
+	// 	setTitle(e.target.value);
+	// };
 
 	const filterTasks = useSelector(selectArrTasks);
 	const handleAdd = e => {

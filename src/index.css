@@ -62,7 +62,7 @@ html[data-theme='dark'] {
 	--sidebar-hover-bg: #3E85F3;
 	--border-shadow-btn: rgba(136, 165, 191, 0.48);
 	--borderColor-colum: rgba(220, 227, 229, 0.8);
-	--background-modal: #F7F7F7;
+	--background-modal-input: #171820;
 	--color-owerflow-background: #21222C;
 	--color-owerflow-tumb: #2D3037;
 	--borderColor-input-profile: rgba(255, 255, 255, 0.15);
@@ -103,7 +103,7 @@ html[data-theme='light'] {
 	--bgColor-range-medium: #F3B249;
 	--bgColor-range-high: #EA3D65;
 	--borderColor-colum: rgba(220, 227, 229, 0.8);
-	--background-modal: #F7F7F7;
+	--background-modal-input: #F7F7F7;
 	--add-button-color-hover: #CAE8FF;
 	--color-owerflow-background: #f2f2f2;
 	--color-owerflow-tumb: #e7e5e5;
