@@ -8,7 +8,6 @@ import { clearAuthHeader } from 'shared/http';
 
 const LogoutBtn = () => {
   const dispatch = useDispatch();
-
   const handleLogOut = () => {
     dispatch(logOutThunk());
     clearAuthHeader();
