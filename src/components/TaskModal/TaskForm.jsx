@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TimePicker } from 'antd';
 import dayjs from 'dayjs';
 import Notiflix from 'notiflix';
-// import { isModalEditShownAction } from 'redux/tasks/tasksSlice';
+import { isModalEditShownAction } from 'redux/tasks/tasksSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import close from '../../images/close.svg';
 
@@ -54,7 +54,7 @@ function TaskPopUp({ task, closeModal }) {
   };
 
   const handleCancel = () => {
-    // isModalEditShownAction(false);
+    isModalEditShownAction(false);
     closeModal(false);
   };
 
