@@ -23,7 +23,7 @@
 .modal {
 	padding: 40px 18px;
 	border-radius: 8px;
-	background-color: var(--paginator-text-color);
+	background-color: #fff;
 	width: 303px;
 	height: 336px;
 	transform: scale(0.5);
