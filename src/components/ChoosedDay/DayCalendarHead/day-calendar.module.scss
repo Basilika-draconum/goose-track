@@ -1,5 +1,5 @@
 .dayCalendarHeadList {
-  background-color: var(--calendar);
+  background-color: #ffffff;
 
   display: flex;
   justify-content: space-between;
@@ -8,14 +8,12 @@
   padding: 14px 19px;
   margin-bottom: 14px;
 
-  border: 1px solid var(--paginator-border-color); // 1px solid rgba(255, 255, 255, 0.15); - dark
+  border: 1px solid rgba(220, 227, 229, 0.5);
   border-radius: 8px;
 
   @media (min-width: 768px) {
     padding: 10px 32px;
     margin-bottom: 16px;
-
-    border: 1px solid rgba(220, 227, 229, 0.8); // 1px solid rgba(255, 255, 255, 0.15); dark
   }
 
   @media (min-width: 1440px) {
@@ -35,7 +33,7 @@
 .daysWeekend,
 .choosedDay,
 .dayCalendarHeadBtn {
-  background-color: var(--calendar); // #22232D; dark
+  background-color: #ffffff; // #22232D; dark
   color: #616161; // #ffffff; dark
 
   font-weight: 600;
@@ -58,9 +56,9 @@
   }
 }
 
-.daysWeekend {
-  color: #3e85f3;
-}
+// .daysWeekend {
+//   color: #3e85f3;
+// }
 
 .dayCalendarHeadNumber {
   font-weight: 600;
@@ -73,7 +71,7 @@
 
 .dayCalendarHeadBtn,
 .choosedDay {
-  color: var(--name-text-color);
+  color: #343434;
 
   font-weight: 700;
   font-size: 12px;
@@ -90,7 +88,7 @@
   &:hover,
   &:focus {
     background-color: #3e85f3;
-    color: #ffffff;
+    color: white;
   }
 
   @media (min-width: 768px) {
@@ -105,5 +103,5 @@
 
 .choosedDay {
   background-color: #3e85f3;
-  color: #ffffff;
+  color: white;
 }

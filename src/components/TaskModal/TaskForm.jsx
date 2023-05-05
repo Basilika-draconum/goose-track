@@ -9,31 +9,18 @@ import close from '../../images/close.svg';
 import { selectArrTasks } from 'redux/tasks/tasksSelectors';
 
 import style from './TaskForm.module.scss';
-import { addTask } from 'redux/tasks/tasksOperations';
+import { addTask } from 'redux/auth/authOperations';
 
-function TaskPopUp({ task, closeModal, type }) {
-
+function TaskPopUp({ task, closeModal }) {
   const format = 'H:mm';
   const [start, setStart] = useState(
     task ? task.start : dayjs('09:00', format)
   );
   const [end, setEnd] = useState(task ? task.end : dayjs('12:00', format));
   const [priority, setPriority] = useState(task ? task.priority : 'low');
-  const [title, setTitle] = useState(task ? task.title : '');
+  const [title, setTitle] = useState(task ? task.title : 'Enter text');
 
   const dispatch = useDispatch();
-
-    const chooseProgressType = type => {
-    if (type === 'To do') {
-      return 'toDo';
-    }
-    if (type === 'In progress') {
-      return 'inProgress';
-    }
-    if (type === 'Done') {
-      return 'done';
-    }
-  };
 
   const onChangeStart = (time, valueString) => {
     setStart(dayjs(valueString, format));
@@ -54,19 +41,15 @@ function TaskPopUp({ task, closeModal, type }) {
   const filterTasks = useSelector(selectArrTasks);
   const handleAdd = e => {
     e.preventDefault();
-    const status = chooseProgressType(type);
-    const data = { date: { start, end }, priority, title, status };
+    const data = { start, end, priority, title };
     if (
       filterTasks.find(task => task.title.toLowerCase() === title.toLowerCase())
     ) {
       Notiflix.Notify.failure(`${title} is already added.`);
       return;
     }
-    console.log(data);
-    dispatch(addTask(data))
-      .unwrap()
-      .then(() => hadleCloseModal());
 
+    dispatch(addTask(data));
     setTitle('');
   };
 
@@ -86,18 +69,12 @@ function TaskPopUp({ task, closeModal, type }) {
         <div className={style.popup}> */}
       <form action="" className={style.popupForm}>
         <label htmlFor="start" className={style.titleLabel}>
-          <p className={style.title}>Title</p>
-          <input
-            name="title"
-            type="text"
-            placeholder="Enter text"
-            value={title}
-            onChange={onChangeTitle}
-          />
+          <p>Title</p>
+          <input type="text" name="title" onChange={onChangeTitle} />
         </label>
         <div className={style.timePickersWrapper}>
           <label htmlFor="title" className={style.timePickerLabel}>
-            <p className={style.start}>Start</p>
+            <p>Start</p>
             <TimePicker
               name="start"
               onChange={onChangeStart}
@@ -111,7 +88,7 @@ function TaskPopUp({ task, closeModal, type }) {
             />
           </label>
           <label htmlFor="end" className={style.timePickerLabel}>
-            <p className={style.end}>End</p>
+            <p>End</p>
             <TimePicker
               name="end"
               onChange={onChangeEnd}
@@ -172,7 +149,7 @@ function TaskPopUp({ task, closeModal, type }) {
               className={style.submitButton}
               onClick={handleAdd}
             >
-              <span className={style.plus}>+</span>Add
+              <span></span>Add
             </button>
             <button
               type="button"

@@ -40,33 +40,11 @@ export const updateTaskStatusThunk = createAsyncThunk(
   }
 );
 
-// export const addTask = createAsyncThunk(
-//   'task/addTask',
-//   async (tasksData, thunkAPI) => {
-//     try {
-//       const response = await fetch('/task', 
-//       {
-//         // method: 'POST',
-//         // body: JSON.stringify(tasksData),
-//         // headers: {
-//         //   'Content-Type': 'application/json',
-//         // },
-//       });
-//       const data = await response.json();
-//       return data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
-
-
 export const addTask = createAsyncThunk(
   'task/addTask',
   async (tasksData, thunkAPI) => {
     try {
-      const data = await addTaskApi(tasksData)
-
+      const data = await addTaskApi(tasksData);
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
