@@ -41,17 +41,17 @@
 
   .low {
     background-color: #ceeefd;
-    color: var(--notheme-color-accent);
+    color: #3e85f3;
   }
 
   .medium {
     background-color: #fcf0d4;
-    color: var(--bgColor-range-medium);
+    color: #f3b249;
   }
 
   .high {
     background-color: #ffd2dd;
-    color: var(--bgColor-range-high);
+    color: #ea3d65;
   }
 
   @media (min-width: 768px) {

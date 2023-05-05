@@ -1,6 +1,8 @@
 .toolbar{ 
-  position: relative;
   display: flex;
+  position: absolute;
+  right: 15px;
+  top: 75px;
   gap: 15px;
   flex-direction: row;
   margin: 0 px 0px 0px 0px;
@@ -12,13 +14,12 @@
   margin: 0px;
   border: none;
   cursor: pointer;  
-  background-color: transparent;
 }  
 .toolbar__svg{
   width: 16px;
   height: 16px;
   fill: transparent;
-  stroke: var(--profile-text-main);
+  stroke: rgba(17, 17, 17, 1);
 }
 
 .toolbar__svg:hover{
@@ -31,10 +32,10 @@
   justify-content: center;
   gap: 10px;
   position: absolute;
-  top: 0%;
-  left: 40%;
+  top: 10%;
+  left: 50%;
   transform: translate(-50%, 30%);
-  background-color: var(--list-status);
+  background: #fff;
   border: 1px solid rgba(227, 243, 255, 1);
   border-radius: 5px;
   width: 147px;
@@ -75,6 +76,5 @@
   margin: 0px;
   margin-right: 10px;
   padding: 0px;
-  color: var(--profile-text-main); 
 }
 

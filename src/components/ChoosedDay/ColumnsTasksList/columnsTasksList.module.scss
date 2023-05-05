@@ -2,17 +2,16 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  padding-right: 7px;
   overflow-y: auto;
   &::-webkit-scrollbar {
     width: 8px;
     height: 376px;
-    margin-left: 17px;
-    background: var(--color-owerflow-background);
+    display: true;
+    background: #f2f2f2;
     border-radius: 12px;
   }
   &::-webkit-scrollbar-thumb {
-    background: var(--color-owerflow-tumb);
+    background: #e7e5e5;
     border-radius: 12px;
   }
   @media screen and (min-width: 768px) {
