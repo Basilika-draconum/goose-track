@@ -19,7 +19,7 @@ function TaskPopUp({ task, closeModal }) {
 	);
 	const [end, setEnd] = useState(task ? task.end : dayjs('12:00', format));
 	const [priority, setPriority] = useState(task ? task.priority : 'low');
-	const [title, setTitle] = useState(task ? task.title : 'Enter text');
+	const [title, setTitle] = useState(task ? task.title : '');
 
 	const dispatch = useDispatch();
 
