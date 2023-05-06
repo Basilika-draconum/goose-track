@@ -10,7 +10,7 @@ const AddTaskBtn = ({ progressType }) => {
   const [activateModal, setActivateModal] = useState(false);
 
   const openModal = () => {
-    setActivateModal(true);
+    setActivateModal(pS => !pS);
   };
 
   return (

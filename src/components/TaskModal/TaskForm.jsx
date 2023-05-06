@@ -10,11 +10,9 @@ import { selectArrTasks } from 'redux/tasks/tasksSelectors';
 
 import style from './TaskForm.module.scss';
 import { addTask } from 'redux/tasks/tasksOperations';
-import {selectDate} from 'redux/date/dateSelectors'
+import { selectDate } from 'redux/date/dateSelectors';
 
 function TaskPopUp({ task, closeModal, type }) {
-  const currentDate = useSelector(selectDate);
-  console.log(currentDate);
   const format = 'H:mm';
   const [start, setStart] = useState(
     task ? task.start : dayjs('09:00', format)
@@ -57,13 +55,7 @@ function TaskPopUp({ task, closeModal, type }) {
   const handleAdd = e => {
     e.preventDefault();
     const status = chooseProgressType(type);
-    const data = {
-      date: { start: currentDate, end: currentDate },
-      priority,
-      title,
-      status,
-    };
-    console.log(data);
+    const data = { date: { start, end }, priority, title, status };
     if (
       filterTasks.find(task => task.title.toLowerCase() === title.toLowerCase())
     ) {
