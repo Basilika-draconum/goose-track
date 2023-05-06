@@ -20,11 +20,13 @@ const TasksColumn = ({ title, tasks }) => {
   return (
     <li className={s.tasksColumnWrap}>
       <ColumnHeadBar title={title} progressType={chooseProgressType} />
-      {tasks?.length !== 0 && <ColumnsTasksList tasks={tasks} progressType={chooseProgressType} />}
+      {tasks?.length !== 0 && (
+        <ColumnsTasksList tasks={tasks} progressType={chooseProgressType()} />
+      )}
       <AddTaskBtn
         text={'Add task'}
         icon={'plus'}
-        progressType={chooseProgressType}
+        progressType={title}
       />
     </li>
   );
