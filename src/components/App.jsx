@@ -1,11 +1,12 @@
 import MainLayout from '../components/MainLayout/MainLayout';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { RegisterPage } from '../pages/AuthPage/RegisterPage';
-import { LoginPage } from 'pages/AuthPage/LoginPage';
+import { useEffect, lazy, Suspense } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAccessToken } from 'redux/auth/authSelectors';
+import { getCurrentUserThunk } from 'redux/auth/authOperations';
 
 import PublicRoute from './PublicRoute/PublicRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
-import AccountPage from './../pages/AccountPage/AccountPage';
 
 import ChoosedMonth from './ChoosedMonth/ChoosedMonth';
 import ChoosedDay from './ChoosedDay/ChoosedDay';
