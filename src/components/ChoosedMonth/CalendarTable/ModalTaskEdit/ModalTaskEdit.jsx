@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { TimePicker } from 'antd';
 import dayjs from 'dayjs';
-import Notiflix from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { fetchTasks, updateTaskThunk } from 'redux/tasks/tasksOperations';
 import close from 'images/close.svg';
 import css from './modal-edit.module.scss';
@@ -54,14 +55,13 @@ const ModalTaskEdit = ({ task, closeModal }) => {
         dayjs(task.date.end)['$d'].toISOString() &&
       priority === task.priority
     ) {
-      Notiflix.Notify.warning('Try to change something first.');
+      Notify.warning('Try to change something first.');
       return;
     }
+    hadleCloseModal();
     dispatch(updateTaskThunk({ id, dataTask }))
       .unwrap()
       .then(() => {
-        hadleCloseModal();
-        Notiflix.Notify.success('The task has been successfully changed.');
         dispatch(fetchTasks());
       });
   };
@@ -187,6 +187,25 @@ const ModalTaskEdit = ({ task, closeModal }) => {
   return !openModal
     ? createPortal(template, document.getElementById('modal'))
     : null;
+};
+
+ModalTaskEdit.propTypes = {
+  task: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    priority: PropTypes.string.isRequired,
+    date: PropTypes.shape({
+      start: PropTypes.string.isRequired,
+      end: PropTypes.string.isRequired,
+    }).isRequired,
+    owner: PropTypes.shape({
+      email: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 export default ModalTaskEdit;
