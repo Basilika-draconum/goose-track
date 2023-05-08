@@ -1,4 +1,4 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import style from './loginForm.module.scss';
@@ -8,82 +8,129 @@ import GooseLogIn2x from 'images/goose-login@2x.png';
 
 import { loginThunk } from '../../redux/auth/authOperations';
 import { AuthNavigate } from 'components/AuthNavigate/AuthNavigate';
-const schema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().min(6).required(),
-});
-const initialValues = {
-  email: '',
-  password: '',
-};
+
 export const LoginForm = () => {
   const dispatch = useDispatch();
-
-  const handleSubmit = (values, { resetForm }) => {
-    dispatch(
-      loginThunk({
-        email: values.email,
-        password: values.password,
-      })
-    );
-    resetForm();
-  };
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    onSubmit: (values, { resetForm }) => {
+      dispatch(
+        loginThunk({
+          email: values.email,
+          password: values.password,
+        })
+      );
+      resetForm();
+    },
+    validationSchema: yup.object().shape({
+      email: yup.string().email().required(),
+      password: yup.string().min(6).required(),
+    }),
+  });
+  console.log(formik);
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={schema}
-      onSubmit={handleSubmit}
-    >
-      <div className={style.wrapper}>
-        <div className={style.loginFormContainer}>
-          <Form className={style.form}>
-            <h1 className={style.form_title}>Log In</h1>
-            <label className={style.login_label}>
-              <p className={style.login_paragraph}>Email</p>
-            <Field
-              className={style.login_input}
-              type="email"
-              name="email"
-              placeholder="Enter email"
-            />
-            </label>
-            <ErrorMessage
-              component="span"
-              className={style.error_message}
-              name="email"
-            />
-            <label className={style.login_label}>
-              <p className={style.login_paragraph}>Password</p>
-            </label>
-            <Field
-              className={style.login_input}
-              type="password"
-              name="password"
-              placeholder="Enter password"
-            />
-            <ErrorMessage
-              component="span"
-              className={style.error_message}
-              name="password"
-            />
-
-            <button className={style.form_button} type="submit">
-              <span className={style.button_text}>Log In</span>
-              <svg className={style.svg}>
-                <use href={`${icons}#icon-log-in`} />
-              </svg>
-            </button>
-          </Form>
-          <AuthNavigate route={"/register"} text="Sign Up" />
-          <img
-            className={style.img}
-            srcSet={`${GooseLogIn} 1x, ${GooseLogIn2x} 2x`}
-            src={`${GooseLogIn}`}
-            alt="goose"
+    <div className={style.wrapper}>
+      <div className={style.loginFormContainer}>
+        <form className={style.form} onSubmit={formik.handleSubmit}>
+          <h1 className={style.form_title}>Log In</h1>
+          <label className={style.login_label}>
+            <p
+              className={
+                formik.touched.email
+                  ? formik.errors.email
+                    ? style.error_paragraph
+                    : style.done_paragraph
+                  : style.login_paragraph
+              }
+            >
+              Email
+            </p>
+          </label>
+          <input
+            className={
+              formik.touched.email
+                ? formik.errors.email
+                  ? style.error_input
+                  : style.done_input
+                : style.login_input
+            }
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            onChange={formik.handleChange}
+            value={formik.values.email}
           />
-        </div>
+          {formik.touched.email ? (
+            formik.errors.email ? (
+              <span className={style.error_message}>
+                This is an ERROR email
+              </span>
+            ) : (
+              <span className={style.done_message}>
+                This is an CORRECT email
+              </span>
+            )
+          ) : null}
+
+          <label className={style.login_label}>
+            <p
+              className={
+                formik.touched.password
+                  ? formik.errors.password
+                    ? style.error_paragraph
+                    : style.done_paragraph
+                  : style.login_paragraph
+              }
+            >
+              Password
+            </p>
+          </label>
+          <input
+            className={
+              formik.touched.password
+                ? formik.errors.password
+                  ? style.error_input
+                  : style.done_input
+                : style.login_input
+            }
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            onChange={formik.handleChange}
+            value={formik.values.password}
+          />
+          {formik.touched.password ? (
+            formik.errors.password ? (
+              <span className={style.error_message}>
+                This is an ERROR password
+              </span>
+            ) : (
+              <span className={style.done_message}>
+                This is an CORRECT password
+              </span>
+            )
+          ) : null}
+
+          <button className={style.form_button} type="submit">
+            <span className={style.button_text}>Log In</span>
+            <svg className={style.svg}>
+              <use href={`${icons}#icon-log-in`} />
+            </svg>
+          </button>
+        </form>
+
+        <AuthNavigate route={'/register'} text="Sign Up" />
+        <img
+          className={style.img}
+          srcSet={`${GooseLogIn} 1x, ${GooseLogIn2x} 2x`}
+          src={`${GooseLogIn}`}
+          alt="goose"
+        />
       </div>
-    </Formik>
+    </div>
   );
 };
