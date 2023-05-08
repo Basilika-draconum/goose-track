@@ -109,6 +109,7 @@ const ModalTaskEdit = ({ task, closeModal }) => {
               placeholder="Enter text"
               value={title}
               maxLength="250"
+              autoFocus
               onChange={onChangeTitle}
             />
           </label>
