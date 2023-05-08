@@ -5,7 +5,7 @@ import { getUser } from 'redux/auth/authSelectors';
 import { getUserAvatar } from './../../redux/auth/authSelectors';
 import ThemeToggler from 'components/ThemeToggler/ThemeToggler';
 import goose from '../../images/goose-header.png';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 const Header = ({ setMenuActive }) => {
   const userName = useSelector(getUser);
   const userAvatar = useSelector(getUserAvatar);
@@ -46,7 +46,10 @@ const Header = ({ setMenuActive }) => {
         <div className={s.boxContent}>
           <ThemeToggler />
 
-          <div className={s.boxContent__name}>{userName.name}</div>
+          {/* <div className={s.boxContent__name}>{userName.name}</div> */}
+          <Link to="/account" className={s.boxContent__name}>
+            {userName.name}
+          </Link>
           <div className={s.boxContent__avatar}>
             {userAvatar ? (
               <img

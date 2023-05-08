@@ -106,11 +106,9 @@ export const logOutThunk = createAsyncThunk(
     try {
       await logoutApi();
       clearAuthHeader();
+      Notiflix.Notify.success('Successfully exited');
     } catch (error) {
       thunkAPI.rejectWithValue(error.message);
     }
   }
 );
-
-
-
