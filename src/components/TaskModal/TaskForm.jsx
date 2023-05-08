@@ -11,15 +11,23 @@ import { selectArrTasks } from 'redux/tasks/tasksSelectors';
 import style from './TaskForm.module.scss';
 import { addTask } from 'redux/tasks/tasksOperations';
 import { selectDate } from 'redux/date/dateSelectors';
+import { useEffect } from 'react';
 
 function TaskPopUp({ task, closeModal, type }) {
-  const format = 'H:mm';
+  const currentDate = useSelector(selectDate);
   const [start, setStart] = useState(
-    task ? task.start : dayjs('09:00', format)
+    task ? task.start : dayjs(`${currentDate} 9:00`)
   );
-  const [end, setEnd] = useState(task ? task.end : dayjs('12:00', format));
-  const [priority, setPriority] = useState(task ? task.priority : 'low');
+  const [end, setEnd] = useState(
+    task ? task.end : dayjs(`${currentDate} 12:00`)
+  );
+  const [priority, setPriority] = useState(()=>task ? task.priority : 'low');
   const [title, setTitle] = useState(task ? task.title : '');
+
+  useEffect(()=>{
+    setStart(dayjs(`${currentDate} 9:00`));
+    setEnd(dayjs(`${currentDate} 12:00`));
+  },[currentDate])
 
   const dispatch = useDispatch();
 
@@ -36,11 +44,11 @@ function TaskPopUp({ task, closeModal, type }) {
   };
 
   const onChangeStart = (time, valueString) => {
-    setStart(dayjs(valueString, format));
+    setStart(dayjs(`${currentDate} ${valueString}`));
   };
 
   const onChangeEnd = (time, valueString) => {
-    setEnd(dayjs(valueString, format));
+    setEnd(dayjs(`${currentDate} ${valueString}`));
   };
 
   const onChangePriority = e => {
@@ -55,7 +63,15 @@ function TaskPopUp({ task, closeModal, type }) {
   const handleAdd = e => {
     e.preventDefault();
     const status = chooseProgressType(type);
-    const data = { date: { start, end }, priority, title, status };
+    const data = {
+      date: {
+        start: start.toISOString(),
+        end: end.toISOString(),
+      },
+      priority,
+      title,
+      status,
+    };
     if (
       filterTasks.find(task => task.title.toLowerCase() === title.toLowerCase())
     ) {
@@ -83,7 +99,7 @@ function TaskPopUp({ task, closeModal, type }) {
       {/* <Modal active={activateModal} setActive={setActivateModal}> */}
       {/* <div className={style.backdrop}>
         <div className={style.popup}> */}
-      <form action="" className={style.popupForm}>
+      <form action="" className={style.popupForm} onSubmit={handleAdd}>
         <label htmlFor="start" className={style.titleLabel}>
           <p className={style.title}>Title</p>
           <input
@@ -169,7 +185,7 @@ function TaskPopUp({ task, closeModal, type }) {
             <button
               type="submit"
               className={style.submitButton}
-              onClick={handleAdd}
+              // onClick={handleAdd}
             >
               <span className={style.plus}>+</span>Add
             </button>
