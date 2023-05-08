@@ -325,8 +325,7 @@
    }
 }
 
-.closeButtonBlack,
-.closeButtonWhite {
+.closeBtn {
    position: absolute;
    top: 10px;
    right: 14px;
@@ -338,10 +337,8 @@
    border-radius: 50%;
 
    background-color: transparent;
-   background-image: url("../../../../images/button-close.svg");
-   background-repeat: no-repeat;
-   background-position: center;
-   background-size: contain;
+
+   stroke: var(--color-btnClose-modalEdit);
 
    cursor: pointer;
 
@@ -349,18 +346,9 @@
 
    &:hover,
    &:focus {
-      transform: scale(1.2);
-      // transform: rotateZ(90deg);
-      // border: 2.5px solid rgba(114, 194, 248, 0.7);
+      transform: rotateZ(90deg);
+      border: 2.5px solid rgba(114, 194, 248, 0.7);
    }
-}
-
-.closeButtonBlack {
-   fill: #212121;
-}
-
-.closeButtonWhite {
-   fill: #ffffff;
 }
 
 .title,

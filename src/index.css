@@ -75,6 +75,7 @@ html[data-theme='dark'] {
   --bgInput-modalEdit: transparent;
   --colorTitle-modalEdit: rgba(250, 250, 250, 0.3);
   --colorInput-modalEdit: #ffffff;
+  --color-btnClose-modalEdit: #ffffff;
 }
 
 html[data-theme='light'] {
@@ -130,6 +131,7 @@ html[data-theme='light'] {
   --bgInput-modalEdit: #f7f7f7;
   --colorTitle-modalEdit: rgba(52, 52, 52, 0.8);
   --colorInput-modalEdit: #616161;
+  --color-btnClose-modalEdit: #212121;
 }
 
 * {

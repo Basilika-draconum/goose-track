@@ -70,17 +70,36 @@ const ModalTaskEdit = ({ task, closeModal }) => {
   };
 
   const template = (
-    <div
-      className={css.overlay}
-      onClick={closeModal}
-    >
+    <div className={css.overlay} onClick={closeModal}>
       <div className={css.modalEditWrapper}>
         <form action="" className={css.popupForm}>
           <button
             type="button"
             onClick={hadleCloseModal}
-            className={css.closeButtonBlack}
-          ></button>
+            className={css.closeBtn}
+          >
+            <svg
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 32 32"
+            >
+              <title>button-close</title>
+              <path
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke-miterlimit="4"
+                stroke-width="3.2"
+                d="M24 8l-16 16"
+              ></path>
+              <path
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke-miterlimit="4"
+                stroke-width="3.2"
+                d="M8 8l16 16"
+              ></path>
+            </svg>
+          </button>
 
           <label htmlFor="start" className={css.titleLabel}>
             <p className={css.title}>Title</p>
