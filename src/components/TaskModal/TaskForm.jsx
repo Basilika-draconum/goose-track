@@ -11,16 +11,28 @@ import { selectArrTasks } from 'redux/tasks/tasksSelectors';
 import style from './TaskForm.module.scss';
 import { addTask } from 'redux/tasks/tasksOperations';
 
-function TaskPopUp({ task, closeModal }) {
+function TaskPopUp({ task, closeModal, type }) {
   const format = 'H:mm';
   const [start, setStart] = useState(
     task ? task.start : dayjs('09:00', format)
   );
   const [end, setEnd] = useState(task ? task.end : dayjs('12:00', format));
   const [priority, setPriority] = useState(task ? task.priority : 'low');
-  const [title, setTitle] = useState(task ? task.title : 'Enter text');
+  const [title, setTitle] = useState(task ? task.title : '');
 
   const dispatch = useDispatch();
+
+  const chooseProgressType = type => {
+    if (type === 'To do') {
+      return 'toDo';
+    }
+    if (type === 'In progress') {
+      return 'inProgress';
+    }
+    if (type === 'Done') {
+      return 'done';
+    }
+  };
 
   const onChangeStart = (time, valueString) => {
     setStart(dayjs(valueString, format));
@@ -41,17 +53,19 @@ function TaskPopUp({ task, closeModal }) {
   const filterTasks = useSelector(selectArrTasks);
   const handleAdd = e => {
     e.preventDefault();
-  
-    const data = {date:{start, end}, priority, title };
-    setTitle('');
+    const status = chooseProgressType(type);
+    const data = { date: { start, end }, priority, title, status };
     if (
       filterTasks.find(task => task.title.toLowerCase() === title.toLowerCase())
     ) {
       Notiflix.Notify.failure(`${title} is already added.`);
       return;
     }
+    console.log(data);
+    dispatch(addTask(data))
+      .unwrap()
+      .then(() => hadleCloseModal());
 
-    dispatch(addTask(data));
     setTitle('');
   };
 
@@ -70,12 +84,18 @@ function TaskPopUp({ task, closeModal }) {
         <div className={style.popup}> */}
       <form action="" className={style.popupForm}>
         <label htmlFor="start" className={style.titleLabel}>
-          <p>Title</p>
-          <input type="text" value={title} name="title" onChange={onChangeTitle} />
+          <p className={style.title}>Title</p>
+          <input
+            name="title"
+            type="text"
+            placeholder="Enter text"
+            value={title}
+            onChange={onChangeTitle}
+          />
         </label>
         <div className={style.timePickersWrapper}>
           <label htmlFor="title" className={style.timePickerLabel}>
-            <p>Start</p>
+            <p className={style.start}>Start</p>
             <TimePicker
               name="start"
               onChange={onChangeStart}
@@ -89,7 +109,7 @@ function TaskPopUp({ task, closeModal }) {
             />
           </label>
           <label htmlFor="end" className={style.timePickerLabel}>
-            <p>End</p>
+            <p className={style.end}>End</p>
             <TimePicker
               name="end"
               onChange={onChangeEnd}
@@ -150,7 +170,7 @@ function TaskPopUp({ task, closeModal }) {
               className={style.submitButton}
               onClick={handleAdd}
             >
-              <span></span>Add
+              <span className={style.plus}>+</span>Add
             </button>
             <button
               type="button"
@@ -181,34 +201,3 @@ function TaskPopUp({ task, closeModal }) {
 }
 
 export default TaskPopUp;
-
-// export const addTask = createAsyncThunk(
-//   'task/addTask',
-//   async (tasksData, thunkAPI) => {
-//     try {
-//       const { data } = await axios.post('/task', { ...tasksData });
-//       return data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
-
-// export const addTask = createAsyncThunk(
-//   'task/addTask',
-//   async (tasksData, thunkAPI) => {
-//     try {
-//       const response = await fetch('/task', {
-//         method: 'POST',
-//         body: JSON.stringify(tasksData),
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//       });
-//       const data = await response.json();
-//       return data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );

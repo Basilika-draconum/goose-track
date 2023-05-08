@@ -1,8 +1,33 @@
+import { useState, useEffect } from 'react';
 import { useMediaQuery } from '@mui/material';
+import ModalTaskEdit from '../ModalTaskEdit/ModalTaskEdit';
 import css from './tasks-list.module.scss';
 
-const TasksList = ({ tasks, openModal, currentTask }) => {
+const TasksList = ({ task }) => {
   const screenMobile = useMediaQuery('(max-width: 767.9px)');
+  const [openModal, setOpenModal] = useState(false);
+
+  useEffect(() => {
+    const closeModalEdit = ({ code }) => {
+      if (code === 'Escape' && openModal) {
+        setOpenModal(!openModal);
+      }
+    };
+    window.addEventListener('keydown', closeModalEdit);
+    return () => {
+      window.removeEventListener('keydown', closeModalEdit);
+    };
+  }, [openModal]);
+
+  const openModalEdit = () => {
+    setOpenModal(!openModal);
+  };
+
+  const closeModalEdit = ({ target, currentTarget }) => {
+    if (target === currentTarget) {
+      setOpenModal(!openModal);
+    }
+  };
 
   const truncateString = str => {
     if (screenMobile) {
@@ -14,25 +39,21 @@ const TasksList = ({ tasks, openModal, currentTask }) => {
     return str;
   };
 
-  console.log(tasks)
-
   return (
-    <ul className={css.tasksListStyle}>
-      <li
-        key={tasks.owner}
-        className={
-          (tasks.priority === 'low' && css.low) ||
-          (tasks.priority === 'medium' && css.medium) ||
-          (tasks.priority === 'high' && css.high)
-        }
-        onClick={() => {
-          openModal(true);
-          currentTask(tasks);
-        }}
-      >
-        {truncateString(tasks.title)}
-      </li>
-    </ul>
+    <div className={css.tasksListStyle}>
+      <div key={task._id} className={css.tasksListItem} onClick={openModalEdit}>
+        <p
+          className={
+            (task.priority === 'low' && css.low) ||
+            (task.priority === 'medium' && css.medium) ||
+            (task.priority === 'high' && css.high)
+          }
+        >
+          {truncateString(task.title)}
+        </p>
+      </div>
+      {openModal && <ModalTaskEdit closeModal={closeModalEdit} task={task} />}
+    </div>
   );
 };
 

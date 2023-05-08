@@ -8,19 +8,14 @@ import { getCurrentUserThunk } from 'redux/auth/authOperations';
 import PublicRoute from './PublicRoute/PublicRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 
-import ChoosedMonth from './ChoosedMonth/ChoosedMonth';
-import ChoosedDay from './ChoosedDay/ChoosedDay';
-import CalendarPage from './../pages/CalendarPage/CalendarPage';
+const ChoosedMonth = lazy(() => import('./ChoosedMonth/ChoosedMonth'));
+const ChoosedDay = lazy(() => import('./ChoosedDay/ChoosedDay'));
+const CalendarPage = lazy(() => import('./../pages/CalendarPage/CalendarPage'));
 
 const RegisterPage = lazy(() => import('../pages/AuthPage/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/AuthPage/LoginPage'));
 const AccountPage = lazy(() => import('../pages/AccountPage/AccountPage'));
 const StartPage = lazy(() => import('../pages/StartPage/StartPage'));
-
-// import RegisterPage from '../pages/AuthPage/RegisterPage';
-// import LoginPage from '../pages/AuthPage/LoginPage';
-// import AccountPage from '../pages/AccountPage/AccountPage';
-// import StartPage from '../pages/StartPage/StartPage';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -45,7 +40,7 @@ export const App = () => {
         <Route path="/" element={<PrivateRoute component={<MainLayout />} />}>
           <Route path="/account" element={<AccountPage />} />
           <Route path="/calendar" element={<CalendarPage />}>
-            <Route path="month/:currentDay" element={<ChoosedMonth />} />
+            <Route path="month/:currentDate" element={<ChoosedMonth />} />
             <Route path="day/:currentDay" element={<ChoosedDay />} />
           </Route>
         </Route>
