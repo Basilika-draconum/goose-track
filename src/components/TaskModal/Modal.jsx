@@ -19,6 +19,8 @@ const Modal = ({ children, active, setActive }) => {
     };
   }, [setActive]);
 
+
+  
   return (
     <div
       className={active ? 'overlay active' : 'overlay'}

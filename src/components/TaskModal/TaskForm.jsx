@@ -41,7 +41,9 @@ function TaskPopUp({ task, closeModal }) {
   const filterTasks = useSelector(selectArrTasks);
   const handleAdd = e => {
     e.preventDefault();
+  
     const data = {date:{start, end}, priority, title };
+    setTitle('');
     if (
       filterTasks.find(task => task.title.toLowerCase() === title.toLowerCase())
     ) {
@@ -69,7 +71,7 @@ function TaskPopUp({ task, closeModal }) {
       <form action="" className={style.popupForm}>
         <label htmlFor="start" className={style.titleLabel}>
           <p>Title</p>
-          <input type="text" name="title" onChange={onChangeTitle} />
+          <input type="text" value={title} name="title" onChange={onChangeTitle} />
         </label>
         <div className={style.timePickersWrapper}>
           <label htmlFor="title" className={style.timePickerLabel}>
