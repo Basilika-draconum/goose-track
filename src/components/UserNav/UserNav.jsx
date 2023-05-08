@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import icon from '../../images/sideBarIcon/SideBarIcon.svg';
+// import { ReactComponent as UserCheck } from '../../images/close.svg';
 import s from './UserNav.module.scss';
 
 const UserNav = () => {
@@ -10,6 +11,7 @@ const UserNav = () => {
         <svg className={s.userNavLinks__link__icon}>
           <use href={`${icon}#icon-userCheck`}></use>
         </svg>
+        {/* <UserCheck className={s.userNavLinks__link__icon} /> */}
         <span className={s.userNavLinks__link__text}>My account</span>
       </NavLink>
       <NavLink to="/calendar" className={s.userNavLinks__link}>

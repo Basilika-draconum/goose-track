@@ -26,6 +26,10 @@
     &:hover &__icon {
       stroke: var(--sidebar-hover-icon);
     }
+    // &__icon.active {
+    //   stroke: var(--sidebar-hover-icon);
+    // }
+
     &__text {
       font-family: 'Inter';
       font-style: normal;
