@@ -349,8 +349,8 @@
 
 .closeButton {
 	position: absolute;
-	top: 14px;
-	right: 14px;
+	top: 4px;
+	right: 25px;
 	width: 20px;
 	height: 20px;
 	border: none;
@@ -359,13 +359,13 @@
 	background-color: transparent;
 	border-radius: 50%;
 	cursor: pointer;
-	transition: transform 250ms ease-in;
+	// transition: transform 250ms ease-in;
 
 
-	&:hover {
-		transform: rotateZ(90deg);
+	// &:hover {
+	// 	fill: red;
 
-	}
+	// }
 }
 
 .close_icon {

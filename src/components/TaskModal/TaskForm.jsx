@@ -44,6 +44,10 @@ function TaskPopUp({ task, closeModal, type }) {
 
   const onChangePriority = e => {
     setPriority(e.target.value);
+    // if (!['low', 'medium', 'high'].includes(priority)) {
+    //   Notiflix.Notify.failure('No task priority');
+    //   return;
+    // }
   };
 
   const onChangeTitle = e => {
@@ -71,6 +75,7 @@ function TaskPopUp({ task, closeModal, type }) {
 
   const handleCancel = () => {
     isModalEditShownAction(false);
+    closeModal(false);
   };
 
   const hadleCloseModal = () => {
@@ -129,6 +134,7 @@ function TaskPopUp({ task, closeModal, type }) {
               id="low"
               name="priority"
               value="low"
+              checked={priority === 'low'}
               onChange={onChangePriority}
               className={style.radioInput}
             />
@@ -142,6 +148,7 @@ function TaskPopUp({ task, closeModal, type }) {
               id="medium"
               name="priority"
               value="medium"
+              checked={priority === 'medium'}
               onChange={onChangePriority}
               className={style.radioInput}
             />
@@ -155,6 +162,7 @@ function TaskPopUp({ task, closeModal, type }) {
               id="high"
               name="priority"
               value="high"
+              checked={priority === 'high'}
               onChange={onChangePriority}
               className={style.radioInput}
             />
