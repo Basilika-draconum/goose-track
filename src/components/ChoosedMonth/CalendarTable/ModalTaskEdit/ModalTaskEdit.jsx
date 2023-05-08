@@ -71,7 +71,10 @@ const ModalTaskEdit = ({ task, closeModal }) => {
   };
 
   const template = (
-    <div className={css.overlay} onClick={closeModal}>
+    <div
+      className={openModal ? css.overlayHidden : css.overlay}
+      onClick={closeModal}
+    >
       <div className={css.modalEditWrapper}>
         <form action="" className={css.popupForm}>
           <button

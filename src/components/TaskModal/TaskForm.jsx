@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import Notiflix from 'notiflix';
 import { isModalEditShownAction } from 'redux/tasks/tasksSlice';
 import { useDispatch, useSelector } from 'react-redux';
+
 import close from '../../images/close.svg';
 
 import { selectArrTasks } from 'redux/tasks/tasksSelectors';
@@ -12,7 +13,6 @@ import style from './TaskForm.module.scss';
 import { addTask } from 'redux/tasks/tasksOperations';
 
 function TaskPopUp({ task, closeModal, type }) {
-
   const format = 'H:mm';
   const [start, setStart] = useState(
     task ? task.start : dayjs('09:00', format)
@@ -23,7 +23,7 @@ function TaskPopUp({ task, closeModal, type }) {
 
   const dispatch = useDispatch();
 
-    const chooseProgressType = type => {
+  const chooseProgressType = type => {
     if (type === 'To do') {
       return 'toDo';
     }
@@ -101,6 +101,7 @@ function TaskPopUp({ task, closeModal, type }) {
               name="start"
               onChange={onChangeStart}
               value={start}
+              defaultValue={'08:00'}
               format={'H:mm'}
               minuteStep={5}
               suffixIcon={false}
@@ -115,6 +116,7 @@ function TaskPopUp({ task, closeModal, type }) {
               name="end"
               onChange={onChangeEnd}
               value={end}
+              defaultValue={'12:00'}
               format={'H:mm'}
               minuteStep={5}
               suffixIcon={false}
