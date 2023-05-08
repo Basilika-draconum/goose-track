@@ -6,7 +6,6 @@ import { TimePicker } from 'antd';
 import dayjs from 'dayjs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { fetchTasks, updateTaskThunk } from 'redux/tasks/tasksOperations';
-import close from 'images/close.svg';
 import css from './modal-edit.module.scss';
 
 const ModalTaskEdit = ({ task, closeModal }) => {
@@ -80,10 +79,8 @@ const ModalTaskEdit = ({ task, closeModal }) => {
           <button
             type="button"
             onClick={hadleCloseModal}
-            className={css.closeButton}
-          >
-            <img src={close} alt="close" />
-          </button>
+            className={css.closeButtonBlack}
+          ></button>
 
           <label htmlFor="start" className={css.titleLabel}>
             <p className={css.title}>Title</p>
