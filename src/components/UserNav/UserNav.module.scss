@@ -56,12 +56,13 @@
   // }
   // &__link.active &__icon {
   //   stroke: var(--sidebar-hover-icon);
+  //stroke: inherit;
   // }
 }
 
-.userNavLinks__link.active > svg {
-  stroke: var(--sidebar-hover-icon);
-}
+// .userNavLinks__link.active > svg {
+//   stroke: var(--sidebar-hover-icon);
+// }
 // .userNavLinks__link.active {
 //   background-color: var(--sidebar-hover-bg);
 //   border-radius: 8px;

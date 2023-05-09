@@ -111,7 +111,7 @@ export const logOutThunk = createAsyncThunk(
     try {
       await logoutApi();
       clearAuthHeader();
-      Notiflix.Notify.success('Successfully exited');
+      Notiflix.Notify.success('You have been logged out successfully');
     } catch (error) {
       thunkAPI.rejectWithValue(error.message);
     }

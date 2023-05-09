@@ -6,18 +6,15 @@ import s from './UserNav.module.scss';
 
 const UserNav = () => {
   const [isActive, setIsActive] = useState(false);
-  // {
-  //           isActive
-  //             ? `${s.userNavLinks__link}`
-  //             : `${s.userNavLinks__link} ${s.active}`
-  //         }
 
   return (
     <nav className={s.userNavLinks}>
       <NavLink
         to="/account"
-        className={({ isActive }) =>
-          isActive ? s.userNavLinks__link + '' + s.active : s.userNavLinks__link
+        className={
+          isActive
+            ? `${s.userNavLinks__link}`
+            : `${s.userNavLinks__link} ${s.active}`
         }
       >
         <svg className={s.userNavLinks__link__icon}>
@@ -28,14 +25,14 @@ const UserNav = () => {
       </NavLink>
       <NavLink
         to="/calendar"
-        className={({ isActive }) =>
-          isActive ? s.userNavLinks__link + '' + s.active : s.userNavLinks__link
-        }
-        // className={
-        //   isActive
-        //     ? `${s.userNavLinks__link}`
-        //     : `${s.userNavLinks__link} ${s.active}`
+        // className={({ isActive }) =>
+        //   isActive ? s.userNavLinks__link + '' + s.active : s.userNavLinks__link
         // }
+        className={
+          isActive
+            ? `${s.userNavLinks__link}`
+            : `${s.userNavLinks__link} ${s.active}`
+        }
       >
         <svg className={s.userNavLinks__link__icon}>
           <use href={`${icon}#icon-calendarCheck`}></use>
@@ -47,3 +44,6 @@ const UserNav = () => {
 };
 
 export default UserNav;
+//  className={({ isActive }) =>
+//           isActive ? s.userNavLinks__link + '' + s.active : s.userNavLinks__link
+//         }
