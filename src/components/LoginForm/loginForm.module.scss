@@ -95,6 +95,34 @@
   }
 }
 
+.input_container{
+  position: relative;
+}
+
+.icon_error{
+  position: absolute;
+  top: 14px;
+  left:370px;
+  width: 20px;
+  height: 20px;
+  fill: var(--notheme-warning-color);
+  @media (max-width: 768px) {
+    left:255px;
+  }
+}
+
+.icon_done{
+  position: absolute;
+  top: 14px;
+  left:370px;
+  width: 20px;
+  height: 20px;
+  fill: var(--notheme-done-color);
+  @media (max-width: 768px) {
+    left:255px;
+  }
+}
+
 .login_input {
   background-color: var(--notheme-bgColor-primary);
   outline: none;
@@ -122,6 +150,7 @@
   border-radius: 8px;
   padding: 0.875rem;
   width: 100%;
+  
 }
 
 .done_input {

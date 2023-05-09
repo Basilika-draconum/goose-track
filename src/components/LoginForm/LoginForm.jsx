@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import style from './loginForm.module.scss';
-import icons from 'images/auth.svg';
+import icons from 'images/auth-svg/auth.svg';
 import GooseLogIn from 'images/goose-login.png';
 import GooseLogIn2x from 'images/goose-login@2x.png';
 
@@ -50,31 +50,43 @@ export const LoginForm = () => {
               Email
             </p>
           </label>
-          <input
-            className={
-              formik.touched.email
-                ? formik.errors.email
-                  ? style.error_input
-                  : style.done_input
-                : style.login_input
-            }
-            type="email"
-            name="email"
-            placeholder="Enter email"
-            onChange={formik.handleChange}
-            value={formik.values.email}
-          />
-          {formik.touched.email ? (
-            formik.errors.email ? (
-              <span className={style.error_message}>
-                This is an ERROR email
-              </span>
-            ) : (
-              <span className={style.done_message}>
-                This is an CORRECT email
-              </span>
-            )
-          ) : null}
+          <div className={style.input_container}>
+            <input
+              className={
+                formik.touched.email
+                  ? formik.errors.email
+                    ? style.error_input
+                    : style.done_input
+                  : style.login_input
+              }
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              onChange={formik.handleChange}
+              value={formik.values.email}
+            />
+            {formik.touched.email ? (
+              formik.errors.email ? (
+                <>
+                  <span className={style.error_message}>
+                    This is an ERROR email
+                  </span>
+                  <svg className={style.icon_error}>
+                    <use href={`${icons}#icon-error`}></use>
+                  </svg>
+                </>
+              ) : (
+                <>
+                  <span className={style.done_message}>
+                    This is an CORRECT email
+                  </span>
+                  <svg className={style.icon_done}>
+                    <use href={`${icons}#icon-done`}></use>
+                  </svg>
+                </>
+              )
+            ) : null}
+          </div>
 
           <label className={style.login_label}>
             <p
@@ -89,31 +101,43 @@ export const LoginForm = () => {
               Password
             </p>
           </label>
-          <input
-            className={
-              formik.touched.password
-                ? formik.errors.password
-                  ? style.error_input
-                  : style.done_input
-                : style.login_input
-            }
-            type="password"
-            name="password"
-            placeholder="Enter password"
-            onChange={formik.handleChange}
-            value={formik.values.password}
-          />
-          {formik.touched.password ? (
-            formik.errors.password ? (
-              <span className={style.error_message}>
-                This is an ERROR password
-              </span>
-            ) : (
-              <span className={style.done_message}>
-                This is an CORRECT password
-              </span>
-            )
-          ) : null}
+          <div className={style.input_container}>
+            <input
+              className={
+                formik.touched.password
+                  ? formik.errors.password
+                    ? style.error_input
+                    : style.done_input
+                  : style.login_input
+              }
+              type="password"
+              name="password"
+              placeholder="Enter password"
+              onChange={formik.handleChange}
+              value={formik.values.password}
+            />
+            {formik.touched.password ? (
+              formik.errors.password ? (
+                <>
+                  <span className={style.error_message}>
+                    This is an ERROR password
+                  </span>
+                  <svg className={style.icon_error}>
+                    <use href={`${icons}#icon-error`}></use>
+                  </svg>
+                </>
+              ) : (
+                <>
+                  <span className={style.done_message}>
+                    This is an CORRECT password
+                  </span>
+                  <svg className={style.icon_done}>
+                    <use href={`${icons}#icon-done`}></use>
+                  </svg>
+                </>
+              )
+            ) : null}
+          </div>
 
           <button className={style.form_button} type="submit">
             <span className={style.button_text}>Log In</span>
