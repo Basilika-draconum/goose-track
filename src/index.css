@@ -1,10 +1,6 @@
 @import-normalize;
 /* bring in normalize.css styles */
 
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}  */
 :root {
   --notheme-bgColor-primary: #ffffff;
   --notheme-bgColor-secondary: #dcebf7;
@@ -71,7 +67,7 @@ html[data-theme='dark'] {
   --clos-modal: #ffffff;
   --border-input: rgba(255, 255, 255, 0.15);
   --background-modal-input: #171820;
-
+  --background-btn-disabled: #616161;
   --bg-modalEdit: #171820;
   --bgInput-modalEdit: transparent;
   --colorTitle-modalEdit: rgba(250, 250, 250, 0.3);
@@ -115,6 +111,8 @@ html[data-theme='light'] {
   --bgColor-range-high: #ea3d65;
   --borderColor-colum: rgba(220, 227, 229, 0.8);
   --add-button-color-hover: #cae8ff;
+  --background-btn-disabled: #919191;
+
   /* не змінний*/
   --color-owerflow-background: #f2f2f2;
   --color-owerflow-tumb: #e7e5e5;
@@ -127,7 +125,6 @@ html[data-theme='light'] {
   --clos-modal: #111111;
   --border-input: #f7f7f7;
   --background-modal-input: #f7f7f7;
-
   --bg-modalEdit: #ffffff;
   --bgInput-modalEdit: #f7f7f7;
   --colorTitle-modalEdit: rgba(52, 52, 52, 0.8);
@@ -164,4 +161,41 @@ body {
     max-width: 1440px;
     padding: 0 24px;
   }
+}
+
+.active {
+  background-color: var(--sidebar-hover-bg);
+  border-radius: 8px;
+  color: var(--sidebar-hover-link);
+}
+
+* {
+	font-family: 'Inter', sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+	max-width: 375px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 20px;
+	box-sizing: border-box;
+
+	@media screen and (min-width: 768px) {
+		max-width: 768px;
+		padding: 0 32px;
+	}
+
+	@media screen and (min-width: 1440px) {
+		max-width: 1440px;
+		padding: 0 24px;
+	}
 }

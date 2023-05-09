@@ -1,25 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TimePicker } from 'antd';
 import dayjs from 'dayjs';
 import Notiflix from 'notiflix';
 import { isModalEditShownAction } from 'redux/tasks/tasksSlice';
 import { useDispatch, useSelector } from 'react-redux';
-
-import close from '../../images/close.svg';
+import close from '../../images/modal-svg/closeModal.svg';
+import icon from '../../images/modal-svg/plus.svg';
 
 import { selectArrTasks } from 'redux/tasks/tasksSelectors';
 
 import style from './TaskForm.module.scss';
 import { addTask } from 'redux/tasks/tasksOperations';
+import { selectDate } from 'redux/date/dateSelectors';
 
 function TaskPopUp({ task, closeModal, type }) {
-  const format = 'H:mm';
+  // const format = 'H:mm';
+  const currentDate = useSelector(selectDate);
   const [start, setStart] = useState(
-    task ? task.start : dayjs('09:00', format)
+    task ? task.start : dayjs(`${currentDate} 09:00`)
   );
-  const [end, setEnd] = useState(task ? task.end : dayjs('12:00', format));
+  const [end, setEnd] = useState(
+    task ? task.end : dayjs(`${currentDate} 09:00`)
+  );
   const [priority, setPriority] = useState(task ? task.priority : 'low');
   const [title, setTitle] = useState(task ? task.title : '');
+
+  useEffect(() => {
+    setStart(dayjs(`${currentDate} 9:00`));
+    setEnd(dayjs(`${currentDate} 12:00`));
+  }, [currentDate]);
 
   const dispatch = useDispatch();
 
@@ -36,11 +45,11 @@ function TaskPopUp({ task, closeModal, type }) {
   };
 
   const onChangeStart = (time, valueString) => {
-    setStart(dayjs(valueString, format));
+    setStart(dayjs(`${currentDate} ${valueString}`));
   };
 
   const onChangeEnd = (time, valueString) => {
-    setEnd(dayjs(valueString, format));
+    setEnd(dayjs(`${currentDate} ${valueString}`));
   };
 
   const onChangePriority = e => {
@@ -56,14 +65,12 @@ function TaskPopUp({ task, closeModal, type }) {
     e.preventDefault();
     const status = chooseProgressType(type);
     const data = { date: { start, end }, priority, title, status };
-    // console.log('start, end', dayjs('2023-05-10', 'YYYY-MM-DD'));
     if (
       filterTasks.find(task => task.title.toLowerCase() === title.toLowerCase())
     ) {
       Notiflix.Notify.failure(`${title} is already added.`);
       return;
     }
-    console.log(data);
     dispatch(addTask(data))
       .unwrap()
       .then(() => hadleCloseModal());
@@ -82,9 +89,6 @@ function TaskPopUp({ task, closeModal, type }) {
 
   return (
     <>
-      {/* <Modal active={activateModal} setActive={setActivateModal}> */}
-      {/* <div className={style.backdrop}>
-        <div className={style.popup}> */}
       <form action="" className={style.popupForm} onSubmit={handleAdd}>
         <label htmlFor="start" className={style.titleLabel}>
           <p className={style.title}>Title</p>
@@ -173,12 +177,11 @@ function TaskPopUp({ task, closeModal, type }) {
         </div>
         {!task ? (
           <div className={style.buttonWrapper}>
-            <button
-              type="submit"
-              className={style.submitButton}
-              // onClick={handleAdd}
-            >
-              <span className={style.plus}>+</span>Add
+            <button type="submit" className={style.submitButton}>
+              <svg className={style.submitButton__icon} alt="plus">
+                <use href={`${icon}#plus`}></use>
+              </svg>
+              Add
             </button>
             <button
               type="button"
@@ -198,12 +201,11 @@ function TaskPopUp({ task, closeModal, type }) {
           onClick={hadleCloseModal}
           className={style.closeButton}
         >
-          <img src={close} alt="close" />
+          <svg className={style.closeButton_icon}>
+            <use href={`${close}#icon-Vector`} />
+          </svg>
         </button>
       </form>
-      {/* </div>
-      </div> */}
-      {/* </Modal> */}
     </>
   );
 }
