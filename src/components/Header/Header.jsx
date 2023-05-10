@@ -28,9 +28,9 @@ const Header = ({ setMenuActive }) => {
     setTasksFilter(filteredTasks);
   }, [dayFromParams, arrTasks, currentDay]);
   const filterTodo = tasksFilter?.filter(task => task.status === 'toDo');
-  // const filterInProgress = tasksFilter?.filter(
-  //   task => task.status === 'inProgress'
-  // );
+  const filterInProgress = tasksFilter?.filter(
+    task => task.status === 'inProgress'
+  );
 
   return (
     <header className={s.header}>
@@ -44,7 +44,7 @@ const Header = ({ setMenuActive }) => {
           </svg>
         </button>
         <div className={s.header__boxPage}>
-          {filterTodo?.length ? (
+          {filterTodo?.length || filterInProgress?.length ? (
             <img src={goose} alt="Goose" width={64} height={60} />
           ) : null}
           <div className={s.header__boxPage__description}>
@@ -53,7 +53,7 @@ const Header = ({ setMenuActive }) => {
                 ? 'Calendar'
                 : 'User Profile'}
             </p>
-            {filterTodo?.length ? (
+            {filterTodo?.length || filterInProgress?.length ? (
               <p className={s.header__boxPage__message}>
                 <span className={s.header__boxPage__message__textBlue}>
                   Let go
