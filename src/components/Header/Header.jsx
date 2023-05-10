@@ -28,6 +28,9 @@ const Header = ({ setMenuActive }) => {
     setTasksFilter(filteredTasks);
   }, [dayFromParams, arrTasks, currentDay]);
   const filterTodo = tasksFilter?.filter(task => task.status === 'toDo');
+  // const filterInProgress = tasksFilter?.filter(
+  //   task => task.status === 'inProgress'
+  // );
 
   return (
     <header className={s.header}>
