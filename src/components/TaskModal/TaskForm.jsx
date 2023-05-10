@@ -79,6 +79,10 @@ function TaskPopUp({ task, closeModal, type }) {
       Notiflix.Notify.failure(`${title} is already added.`);
       return;
     }
+    if (start >= end) {
+      Notiflix.Notify.warning('Incorrect time of the event');
+      return;
+    }
     dispatch(addTask(data))
       .unwrap()
       .then(() => hadleCloseModal());
