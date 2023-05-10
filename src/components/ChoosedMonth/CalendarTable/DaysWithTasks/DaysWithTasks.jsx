@@ -39,6 +39,7 @@ const DaysWithTasks = ({ day, handleClick }) => {
         className={
           isToday(parseISO(day.date)) ? css.today : css.styledNumberDay
         }
+        onClick={e => handleClick(e, day.date)}
       >
         {formattedDay(day.date)}
       </p>
@@ -57,7 +58,7 @@ const DaysWithTasks = ({ day, handleClick }) => {
 
           {screenMobile && day.tasks.length > 1 ? (
             <p className={css.burgerListTasks} onClick={openModalList}>
-              +{day.tasks.length - 1} tasks
+              +{day.tasks.length - 1} ...
             </p>
           ) : !screenMobile && day.tasks.length > 2 ? (
             <p className={css.burgerListTasks} onClick={openModalList}>

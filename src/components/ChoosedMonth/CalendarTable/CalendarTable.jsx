@@ -53,7 +53,7 @@ const CalendarTable = ({ tasks, currentDate }) => {
     <>
       <div className={css.calendarTableWrapper}>
         <table className={css.calendarTableStyle}>
-          <tbody>{rows}</tbody>
+          <tbody className={css.claendarTableBody}>{rows}</tbody>
         </table>
       </div>
     </>
@@ -75,7 +75,7 @@ CalendarTable.propTypes = {
         email: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         _id: PropTypes.string.isRequired,
-      }).isRequired,
+      }),
     }).isRequired
   ).isRequired,
 
