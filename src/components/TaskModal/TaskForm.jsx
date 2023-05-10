@@ -64,6 +64,10 @@ function TaskPopUp({ task, closeModal, type }) {
   const handleAdd = e => {
     e.preventDefault();
     const status = chooseProgressType(type);
+    if (title.length > 250) {
+      Notiflix.Notify.failure('Exceeded maximum length of 250 characters');
+      return;
+    }
     const data = { date: { start, end }, priority, title, status };
     if (
       filterTasks.find(
@@ -73,6 +77,10 @@ function TaskPopUp({ task, closeModal, type }) {
       )
     ) {
       Notiflix.Notify.failure(`${title} is already added.`);
+      return;
+    }
+    if (start >= end) {
+      Notiflix.Notify.warning('Incorrect time of the event');
       return;
     }
     dispatch(addTask(data))
