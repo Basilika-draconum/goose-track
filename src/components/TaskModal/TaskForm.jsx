@@ -66,9 +66,17 @@ function TaskPopUp({ task, closeModal, type }) {
     const status = chooseProgressType(type);
     const data = { date: { start, end }, priority, title, status };
     if (
-      filterTasks.find(task => task.title.toLowerCase() === title.toLowerCase())
+      filterTasks.find(
+        task =>
+          task.title.toLowerCase() === title.toLowerCase() &&
+          task.date.start.slice(0, 10) === currentDate
+      )
     ) {
       Notiflix.Notify.failure(`${title} is already added.`);
+      return;
+    }
+    if (start >= end) {
+      Notiflix.Notify.warning('Incorrect time of the event');
       return;
     }
     dispatch(addTask(data))
