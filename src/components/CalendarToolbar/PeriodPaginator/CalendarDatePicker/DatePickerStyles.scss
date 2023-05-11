@@ -32,7 +32,7 @@
    border-radius: 50%;
 }
 
-.react-datepicker__month-text--today,
+.react-datepicker__month-text[aria-selected="true"],
 .react-datepicker__day--selected {
    background-color: var(--notheme-bgColor-primary);
    color: var(--notheme-color-accent);
@@ -52,4 +52,5 @@
 
 .react-datepicker__navigation-icon::before {
    border-color: var(--notheme-bgColor-primary);
+   border-width: 1px 1px 0 0;
 }
